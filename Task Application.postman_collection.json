@@ -1,0 +1,449 @@
+{
+	"info": {
+		"_postman_id": "d73afabf-f186-4bfc-8c9d-d7af36a88043",
+		"name": "Task Application",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "af0b496f-d397-4cab-9810-0c3b052939ee",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Danerys\",\n    \"email\": \"queen@westeros.com\",\n    \"password\": \"dragonsRock\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/users",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users"
+					]
+				},
+				"description": "Creates a user"
+			},
+			"response": []
+		},
+		{
+			"name": "Log In User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a877a1e1-06fd-45c2-b1d8-ddae9a73d11d",
+						"exec": [
+							"if (pm.response.code === 200) {",
+							"    pm.environment.set('authToken', pm.response.json().token);",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"queen@westeros.com\",\n\t\"password\": \"dragonsRock\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/users/login",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d0f60cab-76b9-4cc7-8166-ea946a323b55",
+						"exec": [
+							"if (pm.response.code === 200) {",
+							"    pm.environment.set('authToken', '');",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/users/logout",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout User All",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d0f60cab-76b9-4cc7-8166-ea946a323b55",
+						"exec": [
+							"if (pm.response.code === 200) {",
+							"    pm.environment.set('authToken', '');",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/users/logoutall",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"logoutall"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get My Profile",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/users/me",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"me"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Task",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"description\": \"Budget Portland\",\n\t\"completed\": false\n}"
+				},
+				"url": {
+					"raw": "{{url}}/tasks",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"tasks"
+					]
+				},
+				"description": "Creates a task"
+			},
+			"response": []
+		},
+		{
+			"name": "Get User by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/users/5c89bcca3cf44db13d4db1f0",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"5c89bcca3cf44db13d4db1f0"
+					]
+				},
+				"description": "Get a sing user by ID\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Tasks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/tasks",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Task by ID",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Randy\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/tasks/5c89a0a2dc9674addfd9281f",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"tasks",
+						"5c89a0a2dc9674addfd9281f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Barbara\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/users/5c89d508c8ea0eb668d15733",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"5c89d508c8ea0eb668d15733"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Task",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"description\": \"Take a nap\",\n}"
+				},
+				"url": {
+					"raw": "{{url}}/tasks/5c89be616606b5b1795d1c0d",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"tasks",
+						"5c89be616606b5b1795d1c0d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/users/me",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Task",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/tasks/5c89d4fc9630edb6526211b5",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"tasks",
+						"5c89d4fc9630edb6526211b5"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YzhjNzMzNjY3YzFhZmQyYjk2Mzc1YjgiLCJpYXQiOjE1NTI3MDg3MjB9.wQTcO9bX7rvX__WnA-jSgpDZba5PQ1Vgh12seJV-s3Q",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "fc7904f8-f86a-43e2-93e6-faa6c60508d0",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "dc206f57-f2dc-4ba2-af0c-8f73cac64203",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

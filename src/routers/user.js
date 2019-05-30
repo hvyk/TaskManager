@@ -113,7 +113,4 @@ router.delete('/users/me', auth, async (req, rsp) => {
   }
 });
 
-
-
-
 module.exports = router;

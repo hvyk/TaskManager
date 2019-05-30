@@ -58,6 +58,8 @@ const userSchema = new mongoose.Schema({
   }]
 });
 
+// curtual mapping to tasks
+
 
 userSchema.methods.toJSON = function() {
   const user = this;

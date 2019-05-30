@@ -83,5 +83,5 @@ test('Should return the current active user', async () => {
     .get('/users/me')
     .set('Authorization', `Bearer ${userOne.tokens[0].token}`)
     .send()
-    .expect(200);    
+    .expect(200);
 })

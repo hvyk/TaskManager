@@ -1,3 +1,4 @@
 node_modules
 dev.env
 config
+.DS_Store
