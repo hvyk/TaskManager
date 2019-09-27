@@ -1,7 +1,5 @@
 
 
-mongod --dbpath=/Users/Andrew/mongodb-data
-
 
 # Calorie Tracker
 
@@ -16,7 +14,7 @@ git clone https://github.com/hvyk/TaskManager.git
 ## Starting mongodb
 
 ```bash
-mongod --dbpath=/Users/Andrew/mongodb-data
+mongod --dbpath=/PATH/TO/HOME/mongodb-data
 ```
 
 ## Starting the Node Application
